@@ -34,7 +34,7 @@
 
       <button type="submit">Submit</button>
     </form>
-
+    <p id="upload-success" style="color: #0f0; margin-top: 1em;"></p>
     <p class="form-note">Accepted file types: SVG, DXF, STL, 3MF, ZIP, PDF. File will upload via Cloudinary.</p>
   </main>
 
@@ -63,6 +63,31 @@
       widget.open();
     }, false);
   </script>
+  <script>
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
 
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(new FormData(form)).toString()
+      })
+      .then(() => {
+        document.getElementById('upload-success').textContent = "✅ Upload submitted successfully.";
+        form.reset();
+      })
+      .catch(error => {
+        console.error(error);
+        document.getElementById('upload-success').textContent = "❌ Upload failed. Try again.";
+      });
+    }
+
+    // Attach handler after DOM loads
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.querySelector('form[name="project-upload"]');
+      form.addEventListener("submit", handleFormSubmit);
+    });
+  </script>
 </body>
 </html>
