@@ -74,8 +74,13 @@
         body: new URLSearchParams(new FormData(form)).toString()
       })
       .then(() => {
-        document.getElementById('upload-success').textContent = "✅ Upload submitted successfully.";
-        form.reset();
+         // Store submitted values in session storage
+        sessionStorage.setItem('projectTitle', document.querySelector('[name="project-title"]').value);
+        sessionStorage.setItem('projectDescription', document.querySelector('[name="project-description"]').value);
+        sessionStorage.setItem('projectFileUrl', document.querySelector('[name="file-url"]').value);
+
+          // Redirect to confirmation page
+        window.location.href = "project-upload.html";
       })
       .catch(error => {
         console.error(error);
