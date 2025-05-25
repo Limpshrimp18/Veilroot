@@ -20,19 +20,49 @@
 
   <main class="form-container">
     <h2>Submit a Project</h2>
-    <form id="upload-form">
-      <input type="text" id="project-title" placeholder="Project Title" required />
-      <textarea id="project-description" placeholder="Describe your build, method, or concept..." rows="5" required></textarea>
-      <input type="file" id="project-file" accept=".svg,.dxf,.stl,.3mf,.pdf,.zip" required />
-      <button type="submit">Upload</button>
+
+    <!-- Netlify Form -->
+    <form name="project-upload" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="project-upload" />
+      <input type="hidden" name="bot-field" />
+      <input type="hidden" name="file-url" id="file-url" />
+
+      <input type="text" name="project-title" placeholder="Project Title" required />
+      <textarea name="project-description" placeholder="Describe your build..." rows="5" required></textarea>
+
+      <button type="button" id="upload-widget-opener">Upload File</button>
+
+      <button type="submit">Submit</button>
     </form>
-    <p class="form-note">Accepted file types: SVG, DXF, STL, 3MF, PDF, ZIP</p>
+
+    <p class="form-note">Accepted file types: SVG, DXF, STL, 3MF, ZIP, PDF. File will upload via Cloudinary.</p>
   </main>
 
   <footer>
     <p>&copy; 2025 Veilroot. Uploads are permanent. Build responsibly.</p>
   </footer>
 
-  <script src="assets/js/auth.js"></script>
+  <!-- Cloudinary Widget -->
+  <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
+  <script>
+    const widget = cloudinary.createUploadWidget({
+      cloudName: 'dlie3namq',
+      uploadPreset: 'veilroot_upload',
+      sources: ['local'],
+      multiple: false,
+      resourceType: 'raw',
+      maxFileSize: 50000000
+    }, (error, result) => {
+      if (!error && result && result.event === "success") {
+        console.log('Uploaded:', result.info.secure_url);
+        document.getElementById('file-url').value = result.info.secure_url;
+      }
+    });
+
+    document.getElementById("upload-widget-opener").addEventListener("click", () => {
+      widget.open();
+    }, false);
+  </script>
+
 </body>
 </html>
