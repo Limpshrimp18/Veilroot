@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Upload | Veilroot</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <h1>VEILROOT</h1>
+      <nav>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="browse.html">Browse</a>
+        <a href="#" id="logout">Logout</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="form-container">
+    <h2>Submit a Project</h2>
+    <form id="upload-form">
+      <input type="text" id="project-title" placeholder="Project Title" required />
+      <textarea id="project-description" placeholder="Describe your build, method, or concept..." rows="5" required></textarea>
+      <input type="file" id="project-file" accept=".svg,.dxf,.stl,.3mf,.pdf,.zip" required />
+      <button type="submit">Upload</button>
+    </form>
+    <p class="form-note">Accepted file types: SVG, DXF, STL, 3MF, PDF, ZIP</p>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Veilroot. Uploads are permanent. Build responsibly.</p>
+  </footer>
+
+  <script src="assets/js/auth.js"></script>
+</body>
+</html>

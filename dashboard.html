@@ -1,0 +1,40 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard | Veilroot</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <h1>VEILROOT</h1>
+      <nav>
+        <a href="browse.html">Browse</a>
+        <a href="upload.html">Upload</a>
+        <a href="#" id="logout">Logout</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="dashboard-container">
+    <h2>Welcome to the Archive</h2>
+    <p id="user-greeting">Loading identity...</p>
+
+    <section class="user-projects">
+      <h3>Your Submissions</h3>
+      <div id="project-list">
+        <p>No uploads found. Begin with your first drop.</p>
+        <!-- In the future, populate here dynamically -->
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Veilroot. Built to distribute, not to protect.</p>
+  </footer>
+
+  <script src="assets/js/auth.js"></script>
+</body>
+</html>
